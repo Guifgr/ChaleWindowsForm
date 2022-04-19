@@ -31,8 +31,8 @@ namespace chalesTrinfo
                 var request = (HttpWebRequest)WebRequest.Create
                     ($"https://chales-triunfo-api.herokuapp.com/" +
                     $"PostChale/{Id}/{NameTxt.Text}/{PriceTxt.Text}/{ShortDetailTxt.Text}/{InformationTxt.Text}" +
-                    $"token");
-                request.Method = "POST";
+                    "/token");
+                request.Method = "GET";
                 using var response = (HttpWebResponse)request.GetResponse();
                 using var stream = response.GetResponseStream();
                 using var streamReader = new StreamReader(stream);
@@ -47,7 +47,7 @@ namespace chalesTrinfo
             }
             catch(Exception ex)
             {
-                sucesslbl.Text = "Nenhum chalé selecionado ou Servidor caiu";
+                sucesslbl.Text = "Nenhum chalé selecionado ou Servidor caiu "+ex.Message;
             }
         }
 
@@ -130,6 +130,10 @@ namespace chalesTrinfo
         }
         public int Id { get; set; }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
